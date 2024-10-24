@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Flower with Moon</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="stars"></div>
+    <iframe style="border-radius:15px; 
+                      position: fixed; 
+                      top: 10px; 
+                      left: 10px; 
+                      width: 400px; 
+                      height: 100px; 
+                      z-index: 1000;" 
+                  src="https://open.spotify.com/embed/playlist/2ahQaNXakQPGTKVkqAGP5i?utm_source=generator&theme=0" 
+                  frameborder="0" 
+                  allowfullscreen="" 
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                  loading="lazy">
+                  </iframe>
+
+    <!-- Moon Image -->
+    <div class="moon-container">
+      <img src="skullimagenobackgroundreal.png" alt="Skull Moon" class="moon" />
+    </div>
+
+    <div id="text-display" style="
+        position: fixed; 
+        bottom: 20px; 
+        left: 20px; 
+        color: white; 
+        font-size: 24px; 
+
+        padding: 10px; 
+        border-radius: 13px;">
+      Hey Pookie 😚 hope you like it 😁
+    </div>
+
+    <div class="flower">
+      <div class="f-wrapper">
+        <div class="flower__line"></div>
+        <div class="f">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+          <div class="flower__leaf flower__leaf--7"></div>
+          <div
+            class="flower__leaf flower__leaf--8 flower__fall-down--yellow"
+          ></div>
+        </div>
+      </div>
+
+      <div class="f-wrapper f-wrapper--2">
+        <div class="flower__line"></div>
+        <div class="f">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+          <div class="flower__leaf flower__leaf--7"></div>
+          <div
+            class="flower__leaf flower__leaf--8 flower__fall-down--pink"
+          ></div>
+        </div>
+      </div>
+
+      <div class="f-wrapper f-wrapper--3">
+        <div class="flower__line"></div>
+        <div class="f">
+          <div class="flower__leaf flower__leaf--1"></div>
+          <div class="flower__leaf flower__leaf--2"></div>
+          <div class="flower__leaf flower__leaf--3"></div>
+          <div class="flower__leaf flower__leaf--4"></div>
+          <div class="flower__leaf flower__leaf--5"></div>
+          <div class="flower__leaf flower__leaf--6"></div>
+          <div class="flower__leaf flower__leaf--7"></div>
+          <div
+            class="flower__leaf flower__leaf--8 flower__fall-down--purple"
+          ></div>
+        </div>
+      </div>
+      <div class="flower__glass"></div>
+    </div>
+    <script src="script.js"></script> 
+    <script>
+      // Get all flower leaves
+      const leaves = document.querySelectorAll('.flower__leaf');
+    
+      // Function to generate random color
+      function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+    
+      // Function to generate a random gradient
+      function getRandomGradient() {
+        const color1 = getRandomColor();
+        const color2 = getRandomColor();
+        const angle = Math.floor(Math.random() * 360); // Random angle for the gradient
+        return `linear-gradient(${angle}deg, ${color1}, ${color2})`;
+      }
+    
+      // Add hover event listener to each leaf
+      leaves.forEach(leaf => {
+        let originalBackground = window.getComputedStyle(leaf).background; // Store the original background
+    
+        leaf.addEventListener('mouseover', function() {
+          // Change leaf background to a new random gradient
+          const newGradient = getRandomGradient();
+          leaf.style.background = newGradient;
+    
+          // Maintain the new gradient after hover out
+          leaf.addEventListener('mouseout', function() {
+            originalBackground = newGradient; // Set the new gradient as the persistent one
+          });
+        });
+      });
+
+      function createRandomSkull() {
+        const skull = document.createElement('img');
+        skull.src = 'skullimagenobackgroundreal.png';
+        skull.alt = 'Skull';
+        skull.style.position = 'absolute';
+        skull.style.width = '20px';
+        skull.style.height = '20px';
+        
+        // Generate random positions within the viewport
+        skull.style.top = Math.random() * window.innerHeight + 'px';
+        skull.style.left = Math.random() * window.innerWidth + 'px';
+        
+        // Append the skull to the body
+        document.body.appendChild(skull);
+      }
+  
+      // Create multiple skulls (e.g., 10 skulls)
+      for (let i = 0; i < 9; i++) {
+        createRandomSkull();
+      }
+
+      const texts = [ 
+      "The music is part of the set 🗿",
+      "I have so many different dreams about a perfect life and they all have one thing in common, you",
+      "The stars twinkle 🤩",
+
+      "This world is full of poets but you yourself are poetry",
+      "I edited the skulls by hand 🫡",
+
+      "You are more than a soulmate, you are a piece of my soul",
+      "The moon is beautiful, isn't it 🥰"
+    ];
+  
+    const fonts = [
+      'Arial', 'Verdana', 'Georgia', 'Garamond', 
+      'Courier New', 'Brush Script MT', 'Comic Sans MS', 
+      'Times New Roman', 'Trebuchet MS', 'Lucida Console'
+    ];
+  
+    let index = 0;
+  
+    // Function to create a text element and display it
+    function showText() {
+      // Remove the previous text if it exists
+      const previousText = document.querySelector('.floating-text');
+      if (previousText) previousText.remove();
+  
+      // Create a new text element
+      const textElement = document.createElement('div');
+      textElement.className = 'floating-text';
+      textElement.textContent = texts[index];
+      index = (index + 1) % texts.length;
+  
+      // Randomize font
+      const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+      textElement.style.fontFamily = randomFont;
+  
+      // Randomize position
+      const randomTop = Math.floor(Math.random() * (window.innerHeight - 50)) + 'px';
+      const randomLeft = Math.floor(Math.random() * (window.innerWidth - 200)) + 'px';
+      textElement.style.position = 'fixed';
+      textElement.style.top = randomTop;
+      textElement.style.left = randomLeft;
+      textElement.style.color = 'white';
+      textElement.style.fontSize = '20px';
+  
+      // Add the text element to the body
+      document.body.appendChild(textElement);
+    }
+  
+    // Change text every 5 seconds (5000 milliseconds)
+    setInterval(showText, 10000);
+  
+    // Initial display
+    showText();
+
+    </script>
+  </body>
+</html>
